@@ -1,8 +1,10 @@
-#иморт библиотек
+'''Основная программа, в которой преобразуются сырые данные. При помощи регулярных выражений вырезается нужная информация,
+а именно дата/время, имя и текст сообщения, при помощи библиотеки Dostoevsky определяется эмоциональная окраска текста, которая
+впоследствии распределяется по часам.'''
+
 import csv
 from datetime import datetime
-import numpy as np
-from os import listdir, getcwd
+from os import listdir
 from os.path import isfile, join, isdir
 from pathlib import Path
 import re
@@ -33,6 +35,7 @@ with open('eggs6.csv', 'w', newline="\r\n") as csvfile:
                 rec = []
                 with open(fname.absolute(), encoding='windows-1251') as reader:
                     a = reader.read()
+                    #использую регулярные выражения
                     for i in re.findall(
                             r"<div class=\"message__header\">(.+?), (.+?)</div>\s*<div>(.+?)<div class=\"kludges\">", a):
                         i = list(i)
